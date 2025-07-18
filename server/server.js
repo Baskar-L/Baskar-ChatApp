@@ -13,7 +13,13 @@ dotenv.config();
 // middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://baskar-chat-app.vercel.app/"],
+    credentials: true,
+  })
+);
+
 
 const PORT = process.env.PORT || 3001;
 const URI = process.env.MONGODB_URI;
