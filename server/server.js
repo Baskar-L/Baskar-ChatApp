@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["https://baskar-chat-app.vercel.app/"],
+    origin: ["https://baskar-chat-app.vercel.app"],
     credentials: true,
   })
 );
