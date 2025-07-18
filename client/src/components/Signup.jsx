@@ -34,7 +34,7 @@ function Signup() {
     };
 
     await axios
-      .post("/api/user/signup", userInfo)
+      .post("https://baskar-chatapp-backend.onrender.com/api/user/signup", userInfo)
       .then((response) => {
         if (response.data) {
           toast.success("Signup successful");
