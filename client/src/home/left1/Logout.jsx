@@ -33,7 +33,7 @@ function Logout() {
 
   const handleLogout = async () => {
     try {
-      await axios.post("/api/user/logout");
+      await axios.post("https://baskar-chatapp-backend.onrender.com/api/user/logout");
       localStorage.removeItem("ChatApp");
       Cookies.remove("jwt");
       toast.success("Logged out successfully");
