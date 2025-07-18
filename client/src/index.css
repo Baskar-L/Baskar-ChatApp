@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar Styling — Light Theme */
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1); /* Light gray */
+  border-radius: 10px;
+}
+
+/* Smooth transitions */
+body {
+   @apply bg-[#e5ddd5];
+  transition: all 0.3s ease-in-out;
+  background-color: #f0f2f5;
+  color: #111;
+}
+
+
+
+
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 3px;
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #a3a3a3;
+}
