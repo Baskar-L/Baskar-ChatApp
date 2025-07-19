@@ -1,45 +1,102 @@
+// import { Server } from "socket.io";
+// import http from "http";
+// import express from "express";
+
+// const app = express();
+
+// const server = http.createServer(app);
+// const io = new Server(server, {
+//   cors: {
+//     origin: "https://baskar-chatapp.vercel.app",
+//     methods: ["GET", "POST"],
+//     credentials: true,
+//   },
+// });
+
+// // realtime message code goes here
+// export const getReceiverSocketId = (receiverId) => {
+//   return users[receiverId];
+// };
+
+// const users = {};
+
+// // used to listen events on server side.
+// io.on("connection", (socket) => {
+//   console.log("a user connected", socket.id);
+//   const userId = socket.handshake.query.userId;
+//   if (userId) {
+//     users[userId] = socket.id;
+//     console.log("Hello ", users);
+//   }
+//   // used to send the events to all connected users
+//   io.emit("getOnlineUsers", Object.keys(users));
+
+//   // used to listen client side events emitted by server side (server & client)
+//   socket.on("disconnect", () => {
+//     console.log("a user disconnected", socket.id);
+//     delete users[userId];
+//     io.emit("getOnlineUsers", Object.keys(users));
+//   });
+// });
+
+// export { app, io, server };
+
+
+
+
+
 import { Server } from "socket.io";
 import http from "http";
 import express from "express";
 
 const app = express();
 
+// Create HTTP server
 const server = http.createServer(app);
+
+// Initialize Socket.IO server
 const io = new Server(server, {
   cors: {
-    origin: "https://baskar-chatapp.vercel.app",
+    origin: "https://baskar-chat-app.vercel.app", // ✅ Make sure this matches your frontend domain
     methods: ["GET", "POST"],
     credentials: true,
   },
 });
 
-// realtime message code goes here
+// Store connected users with their socket ID
+const users = {};
+
+// Get a user's socket ID
 export const getReceiverSocketId = (receiverId) => {
   return users[receiverId];
 };
 
-const users = {};
-
-// used to listen events on server side.
+// Socket.IO connection handler
 io.on("connection", (socket) => {
-  console.log("a user connected", socket.id);
   const userId = socket.handshake.query.userId;
+
   if (userId) {
     users[userId] = socket.id;
-    console.log("Hello ", users);
+    console.log(`✅ User connected: ${userId} => ${socket.id}`);
+  } else {
+    console.log("❌ No userId provided in query");
   }
-  // used to send the events to all connected users
+
+  // Broadcast online users to all clients
   io.emit("getOnlineUsers", Object.keys(users));
 
-  // used to listen client side events emitted by server side (server & client)
+  // Handle disconnection
   socket.on("disconnect", () => {
-    console.log("a user disconnected", socket.id);
-    delete users[userId];
+    if (userId && users[userId]) {
+      delete users[userId];
+      console.log(`⚠️ User disconnected: ${userId} => ${socket.id}`);
+    }
     io.emit("getOnlineUsers", Object.keys(users));
   });
 });
 
 export { app, io, server };
+
 
 
 
