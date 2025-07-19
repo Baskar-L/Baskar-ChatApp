@@ -46,7 +46,7 @@ function useGetAllUsers() {
         const token = Cookies.get("jwt");
 
         const response = await axios.get(
-          "https://baskar-chatapp-backend.onrender.com/api/user/allusers",
+          `${import.meta.env.VITE_API_BASE_URL}/user/allusers`,
           {
             withCredentials: true, // Send cookies
             headers: {
