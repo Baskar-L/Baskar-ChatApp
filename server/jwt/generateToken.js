@@ -24,7 +24,9 @@ const createTokenAndSaveCookie = (userId, res) => {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     // secure: true,
-    sameSite: "None",        // ✅ required for cross-site (vercel ↔ render)
+    sameSite: "None",   
+    path: "/",                                    
+  maxAge: 10 * 24 * 60 * 60 * 1000 
   });
 };
 
