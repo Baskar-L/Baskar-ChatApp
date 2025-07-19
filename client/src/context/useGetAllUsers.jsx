@@ -9,7 +9,7 @@ function useGetAllUsers() {
       setLoading(true);
       try {
         const token = Cookies.get("jwt");
-        const response = await axios.get("/api/user/allusers", {
+        const response = await axios.get("https://baskar-chatapp-backend.onrender.com/api/user/allusers", {
           credentials: "include",
           headers: {
             Authorization: `Bearer ${token}`,
