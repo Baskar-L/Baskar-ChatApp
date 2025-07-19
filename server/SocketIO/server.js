@@ -57,7 +57,7 @@ const server = http.createServer(app);
 // Initialize Socket.IO server
 const io = new Server(server, {
   cors: {
-    origin: "https://baskar-chat-app.vercel.app", // ✅ Make sure this matches your frontend domain
+    origin: "https://baskar-chatapp.vercel.app", // ✅ Make sure this matches your frontend domain
     methods: ["GET", "POST"],
     credentials: true,
   },
