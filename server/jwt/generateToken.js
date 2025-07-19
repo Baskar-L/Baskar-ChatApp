@@ -22,8 +22,8 @@ const createTokenAndSaveCookie = (userId, res) => {
 
   res.cookie("jwt", token, {
     httpOnly: true,
-    // secure: process.env.NODE_ENV === "production",
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
+    // secure: true,
     sameSite: "None",        // ✅ required for cross-site (vercel ↔ render)
   });
 };
